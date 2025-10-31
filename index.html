@@ -1,314 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vikash Purohit | Web Developer</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    /* --- General Styles --- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      scroll-behavior: smooth;
       font-family: 'Poppins', sans-serif;
     }
 
     body {
-      color: #222;
-      background-color: #f9f9f9;
+      background: #f7f9fc;
+      color: #333;
+      scroll-behavior: smooth;
     }
 
-    nav {
-      position: fixed;
+    header {
+      background: #000;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      position: sticky;
       top: 0;
-      width: 100%;
-      background: #111;
+      z-index: 100;
+    }
+
+    nav a {
       color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 10%;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .logo span {
-      color: #007bff;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-    }
-
-    nav ul li a {
-      color: #fff;
+      margin: 0 15px;
       text-decoration: none;
       font-weight: 500;
       transition: 0.3s;
     }
 
-    nav ul li a:hover {
-      color: #007bff;
-    }
-
-    header {
-      height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                  url('background.jpg') center/cover no-repeat;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      animation: fadeIn 2s ease;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      max-width: 600px;
-    }
-
-    .btn {
-      background-color: #007bff;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.3s;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background-color: #0056b3;
-      box-shadow: 0 0 15px #007bff;
-      transform: scale(1.05);
+    nav a:hover {
+      color: #00bcd4;
     }
 
     section {
       padding: 80px 20px;
-      max-width: 1100px;
+      max-width: 1000px;
       margin: auto;
       text-align: center;
     }
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #333;
+    h1, h2 {
+      color: #111;
     }
 
-    p {
-      color: #555;
-      font-size: 1rem;
+    /* Home with dark image overlay */
+    #home {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                  url('background.jpg') no-repeat center center/cover;
+      color: white;
+      padding: 120px 20px;
+      background-attachment: fixed;
+    }
+
+    #home h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: white; /* changed to white */
+    }
+
+    #home p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      color: #f5f5f5; /* light grayish white */
+    }
+
+    .btn {
+      display: inline-block;
+      background: #000;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      background: #00bcd4;
+    }
+
+    /* About */
+    #about p {
+      margin-bottom: 20px;
       line-height: 1.6;
     }
 
-    #about img {
-      width: 150px;
-      border-radius: 50%;
-      margin-bottom: 20px;
-    }
-
-    .services {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .service-box {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding: 30px;
-      width: 280px;
-      transition: transform 0.3s;
-    }
-
-    .service-box:hover {
-      transform: translateY(-5px);
-    }
-
-    .projects {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-
+    /* Projects */
     .project {
-      width: 300px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       background: white;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       transition: 0.3s;
     }
 
     .project:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
     }
 
     .project img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
     }
 
-    .project h3 {
-      padding: 15px;
-      color: #333;
-    }
-
-    .contact-links a {
-      display: inline-block;
-      margin: 10px;
+    /* Hire Me */
+    #hire {
+      background: #000;
       color: white;
-      background-color: #007bff;
-      padding: 10px 20px;
-      border-radius: 25px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .contact-links a:hover {
-      background-color: #0056b3;
-    }
-
-    footer {
-      background-color: #111;
-      color: white;
-      padding: 30px 10px;
+      padding: 80px 20px;
       text-align: center;
     }
 
-    footer span {
-      color: #007bff;
+    #hire h2 {
+      color: #fff;
+      margin-bottom: 15px;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+    #hire p {
+      color: #ccc;
+      margin-bottom: 20px;
     }
 
-    @media (max-width: 768px) {
-      .services, .projects {
-        flex-direction: column;
-        align-items: center;
-      }
-      nav ul {
-        flex-direction: column;
-        background: #111;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        padding: 10px 0;
-        display: none;
-      }
+    .hire-btn {
+      background: #fff;
+      color: #000;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .hire-btn:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">Vikash<span>Purohit</span></div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero Section -->
   <header>
-    <h1>Hi, I'm Vikash Purohit</h1>
-    <p>I build fast, responsive, and beautiful websites for your business.</p>
-    <a href="#contact" class="btn">Hire Me</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#hire">Hire Me</a>
+    </nav>
   </header>
 
-  <!-- About Section -->
-  <section id="about">
+  <section id="home" data-aos="fade-up">
+    <h1>Hi, I'm Vikash Purohit</h1>
+    <p>I make professional paid websites for businesses and individuals.</p>
+    <a href="#projects" class="btn">See My Work</a>
+  </section>
+
+  <section id="about" data-aos="fade-up">
     <h2>About Me</h2>
-    <img src="myphoto.jpg" alt="Vikash Purohit">
-    <p>I'm Vikash Purohit, a web developer from Uttarakhand, India. I'm currently studying in Class 11 with PCM. I love creating websites that help businesses grow and look professional online.</p>
+    <p>
+      Hello! I'm <strong>Vikash Purohit</strong>, a passionate web developer from Uttarakhand, India. 
+      I'm currently studying in Class 11 and learning to master modern web technologies.  
+      I started my journey with a curiosity to understand how websites work — and that curiosity quickly turned into a passion for designing and building them myself.
+    </p>
+    <p>
+      I focus on creating clean, responsive, and user-friendly websites that look great on any device. 
+      My goal is to help businesses and individuals grow online by giving their ideas a beautiful digital presence.  
+      Every project I work on helps me improve and learn something new.
+    </p>
+    <p>
+      I’m always open to paid freelance projects and collaborations that help me grow as a developer.  
+      If you’re looking for someone creative, motivated, and professional — I’d love to be part of your next project!
+    </p>
   </section>
 
-  <!-- Services Section -->
-  <section id="services">
-    <h2>My Services</h2>
-    <div class="services">
-      <div class="service-box">
-        <h3>Website Design</h3>
-        <p>Modern and beautiful website designs that fit your brand perfectly.</p>
-      </div>
-      <div class="service-box">
-        <h3>Web Development</h3>
-        <p>Fast, responsive, and mobile-friendly websites built with HTML, CSS, and JavaScript.</p>
-      </div>
-      <div class="service-box">
-        <h3>SEO Optimization</h3>
-        <p>Improve your website ranking on Google and attract more visitors.</p>
-      </div>
+  <section id="projects" data-aos="fade-up">
+    <h2>My Projects</h2>
+    <div class="project">
+      <img src="https://via.placeholder.com/800x400" alt="Project Example">
+      <h3>Top Shop - Business Website</h3>
+      <p>A modern, responsive business website built using HTML, CSS, and JavaScript.</p>
+      <a href="https://vikash171v-oss.github.io/top-shop/" target="_blank" class="btn">View Project</a>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <h2>Featured Projects</h2>
-    <div class="projects">
-      <!-- New Business Website Link -->
-      <a href="https://vikash171v-oss.github.io/top-shop/" target="_blank">
-        <div class="project">
-          <img src="project1.jpg" alt="Business Website">
-          <h3>Business Website (Top Shop)</h3>
-        </div>
-      </a>
-      <div class="project">
-        <img src="project2.jpg" alt="Portfolio Website">
-        <h3>Portfolio Website</h3>
-      </div>
-      <div class="project">
-        <img src="project3.jpg" alt="E-commerce Design">
-        <h3>E-commerce Design</h3>
-      </div>
-    </div>
+  <section id="hire" data-aos="fade-up">
+    <h2>Want to Work Together?</h2>
+    <p>I build professional, custom websites for clients. Let’s bring your online ideas to life!</p>
+    <a href="mailto:vikashpurohit171@gmail.com" class="hire-btn">Hire Me</a>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>Let’s build something amazing together!</p>
-    <div class="contact-links">
-      <a href="mailto:vikash171v@gmail.com">📧 Email Me</a>
-      <a href="https://instagram.com/vikashpurohit171" target="_blank">📷 Instagram</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
-    <p>© 2025 <span>Vikash Purohit</span> | All Rights Reserved</p>
+    <p>© 2025 Vikash Purohit | All Rights Reserved</p>
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      offset: 100,
+      once: true
+    });
+  </script>
 </body>
 </html>
